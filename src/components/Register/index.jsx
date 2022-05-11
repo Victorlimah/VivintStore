@@ -11,8 +11,10 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState(false);
   const [inputs, setInputs] = useState({
+    name: "",
     email: "",
     password: "",
+    confirmPassword: "",
   });
 
   const handleInputChange = (event) => {
@@ -27,25 +29,36 @@ export default function Login() {
     event.preventDefault();
     setLoading(true);
     setErrors(false);
+
     axios
-      .post(`${API_URL}/login`, inputs)
+      .post(`${API_URL}/register`, inputs)
       .then((response) => {
-        setUser(response.data);
         setLoading(false);
+        setUser(response.data);
         navigate("/home");
       })
-      .catch((error) => {
+      .catch((err) => {
         setLoading(false);
         setErrors(true);
+        if (err.response.data.errors) setErrors(err.response.data.errors);
       });
   };
 
   return (
     <>
       <S.Container>
-        <S.Title>Bem vindo(a) de volta!</S.Title>
+        <S.Title>Bem vindo(a)! </S.Title>
         <S.Form onSubmit={handleSubmit}>
-          <S.FormTitle>Insira seus dados para entrar</S.FormTitle>
+          <S.FormTitle>Insira seus dados para cadastrar</S.FormTitle>
+          <S.Input
+            type="text"
+            name="name"
+            placeholder="Nome"
+            onChange={handleInputChange}
+            value={inputs.name}
+            required
+          />
+
           <S.Input
             type="email"
             name="email"
@@ -63,18 +76,31 @@ export default function Login() {
             value={inputs.password}
             required
           />
+
+          <S.Input
+            type="password"
+            name="confirmPassword"
+            placeholder="Confirmar senha"
+            onChange={handleInputChange}
+            value={inputs.confirmPassword}
+            required
+          />
+
           {errors && (
             <S.Error>
-              <S.ErrorText>E-mail ou senha incorretos</S.ErrorText>
+              {/* aqui da pra pegar a mensagem de erro do back */}
+              <S.ErrorText>Erro ao realizar o cadastro</S.ErrorText>
             </S.Error>
           )}
 
-          <S.Button type="submit">{loading ? <Loading /> : "Entrar"}</S.Button>
+          <S.Button type="submit">
+            {loading ? <Loading /> : "Cadastrar"}
+          </S.Button>
         </S.Form>
 
-        <S.Register onClick={() => navigate("/register")}>
-          Não tem uma conta? Cadastre-se
-        </S.Register>
+        <S.Login onClick={() => navigate("/login")}>
+          Já tem uma conta? Entre agora
+        </S.Login>
       </S.Container>
     </>
   );

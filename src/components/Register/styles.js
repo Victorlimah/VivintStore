@@ -23,7 +23,7 @@ export const Form = styled.form`
   align-items: center;
   justify-content: center;
   width: 85%;
-  height: 30%;
+  height: 50%;
   padding: 1rem;
   border-radius: 5px;
   background-color: #665f55;
@@ -77,7 +77,7 @@ export const ErrorText = styled.p`
   margin-left: 1rem;
 `;
 
-export const Register = styled.h3`
+export const Login = styled.h3`
   font-size: 1rem;
   font-weight: bold;
   margin-top: 2rem;

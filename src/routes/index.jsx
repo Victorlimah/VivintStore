@@ -3,6 +3,7 @@ import UserContext from "./../provider/UserContext";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PageMain from "../pages/Main";
 import PageLogin from "../pages/Login";
+import PageRegister from "../pages/Register";
 
 export default function Router() {
   const [API_URL] = useState("http://localhost:5000");
@@ -18,7 +19,7 @@ export default function Router() {
         <Routes>
           <Route path="/" element={<PageMain />} />
           <Route path="/login" element={<PageLogin />} />
-          <Route path="/" element={<h1>Colocar registro</h1>} />
+          <Route path="/register" element={<PageRegister />} />
           <Route path="/" element={<h1>Colocar main</h1>} />
           <Route path="/" element={<h1>Colocar carrinho</h1>} />
           <Route path="/" element={<h1>Colocar categorias</h1>} />
