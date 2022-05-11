@@ -1,6 +1,7 @@
 import { useState } from "react";
 import UserContext from "./../provider/UserContext";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Main from "../components/Main";
 
 export default function Router() {
   const [token, setToken] = useState("");
@@ -8,7 +9,7 @@ export default function Router() {
     <UserContext.Provider value={{ token, setToken }}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<h1>Colocar main</h1>} />
+          <Route path="/" element={<Main />} />
           <Route path="/" element={<h1>Colocar login</h1>} />
           <Route path="/" element={<h1>Colocar registro</h1>} />
           <Route path="/" element={<h1>Colocar main</h1>} />
