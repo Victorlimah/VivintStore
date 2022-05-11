@@ -7,14 +7,15 @@ import UserContext from "./../../provider/UserContext";
 
 export default function Login() {
   const navigate = useNavigate();
-  const { setUser, API_URL } = useContext(UserContext);
+  const { API_URL } = useContext(UserContext);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState(false);
+  const [statusError, setStatusError] = useState(null);
   const [inputs, setInputs] = useState({
     name: "",
     email: "",
     password: "",
-    confirmPassword: "",
+    confirmationPassword: "",
   });
 
   const handleInputChange = (event) => {
@@ -25,23 +26,38 @@ export default function Login() {
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    const regexEmail = /^[\w+.]+@\w+\.\w{2,}(?:\.\w{2})?$/;
     setLoading(true);
     setErrors(false);
 
-    axios
-      .post(`${API_URL}/register`, inputs)
-      .then((response) => {
-        setLoading(false);
-        setUser(response.data);
-        navigate("/home");
-      })
-      .catch((err) => {
-        setLoading(false);
-        setErrors(true);
-        if (err.response.data.errors) setErrors(err.response.data.errors);
+    if (!regexEmail.test(inputs.email)) {
+      setLoading(false);
+      setErrors(true);
+      setStatusError("Use um email válido.");
+      setInputs({
+        ...inputs,
+        password: "",
+        confirmationPassword: "",
       });
+      return;
+    }
+
+    try {
+      await axios.post(`${API_URL}/sign-up`, inputs);
+      setLoading(false);
+      navigate("/login");
+    } catch (e) {
+      setLoading(false);
+      setErrors(true);
+      setInputs({
+        ...inputs,
+        password: "",
+        confirmationPassword: "",
+      });
+      setStatusError(e.response.data.message);
+    }
   };
 
   return (
@@ -50,6 +66,11 @@ export default function Login() {
         <S.Title>Bem vindo(a)! </S.Title>
         <S.Form onSubmit={handleSubmit}>
           <S.FormTitle>Insira seus dados para cadastrar</S.FormTitle>
+          {errors && (
+            <S.Error>
+              <S.ErrorText>{statusError}</S.ErrorText>
+            </S.Error>
+          )}
           <S.Input
             type="text"
             name="name"
@@ -79,19 +100,12 @@ export default function Login() {
 
           <S.Input
             type="password"
-            name="confirmPassword"
+            name="confirmationPassword"
             placeholder="Confirmar senha"
             onChange={handleInputChange}
-            value={inputs.confirmPassword}
+            value={inputs.confirmationPassword}
             required
           />
-
-          {errors && (
-            <S.Error>
-              {/* aqui da pra pegar a mensagem de erro do back */}
-              <S.ErrorText>Erro ao realizar o cadastro</S.ErrorText>
-            </S.Error>
-          )}
 
           <S.Button type="submit">
             {loading ? <Loading /> : "Cadastrar"}

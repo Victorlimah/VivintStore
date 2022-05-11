@@ -6,10 +6,9 @@ import PageLogin from "../pages/Login";
 import PageRegister from "../pages/Register";
 
 export default function Router() {
-  const [API_URL] = useState("http://localhost:5000");
+  const [API_URL] = useState("https://api-vivint.herokuapp.com");
   const [user, setUser] = useState({
     name: "",
-    email: "",
     token: "",
   });
 

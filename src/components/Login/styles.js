@@ -23,8 +23,8 @@ export const Form = styled.form`
   align-items: center;
   justify-content: center;
   width: 85%;
-  height: 30%;
-  padding: 1rem;
+  height: auto;
+  padding: 1.5rem 1rem;
   border-radius: 5px;
   background-color: #665f55;
 `;
@@ -54,7 +54,7 @@ export const Input = styled.input`
 
 export const Button = styled.button`
   width: 85%;
-  padding: 1rem;
+  height: 55px;
   border: 1px solid #fff;
   border-radius: 5px;
   background-color: #41382f;
@@ -74,7 +74,8 @@ export const ErrorText = styled.p`
   color: #f00;
   font-size: 1rem;
   font-weight: bold;
-  margin-left: 1rem;
+  text-align: center;
+  margin: 0 auto;
 `;
 
 export const Register = styled.h3`

@@ -10,6 +10,7 @@ export default function Login() {
   const { setUser, API_URL } = useContext(UserContext);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState(false);
+  const [statusError, setStatusError] = useState(null);
   const [inputs, setInputs] = useState({
     email: "",
     password: "",
@@ -23,21 +24,36 @@ export default function Login() {
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    setLoading(true);
-    setErrors(false);
-    axios
-      .post(`${API_URL}/login`, inputs)
-      .then((response) => {
-        setUser(response.data);
-        setLoading(false);
-        navigate("/home");
-      })
-      .catch((error) => {
+    const regexEmail = /^[\w+.]+@\w+\.\w{2,}(?:\.\w{2})?$/;
+
+    try {
+      setLoading(true);
+      setErrors(false);
+      if (!regexEmail.test(inputs.email)) {
         setLoading(false);
         setErrors(true);
+        setStatusError("Use um email válido.");
+        setInputs({
+          ...inputs,
+          password: "",
+        });
+        return;
+      }
+      const response = await axios.post(`${API_URL}/sign-in`, inputs);
+      setLoading(false);
+      setUser(response.data);
+      navigate("/home");
+    } catch (err) {
+      setLoading(false);
+      setErrors(true);
+      setInputs({
+        ...inputs,
+        password: "",
       });
+      setStatusError(err.response.data.message);
+    }
   };
 
   return (
@@ -46,6 +62,11 @@ export default function Login() {
         <S.Title>Bem vindo(a) de volta!</S.Title>
         <S.Form onSubmit={handleSubmit}>
           <S.FormTitle>Insira seus dados para entrar</S.FormTitle>
+          {errors && (
+            <S.Error>
+              <S.ErrorText>{statusError}</S.ErrorText>
+            </S.Error>
+          )}
           <S.Input
             type="email"
             name="email"
@@ -63,11 +84,6 @@ export default function Login() {
             value={inputs.password}
             required
           />
-          {errors && (
-            <S.Error>
-              <S.ErrorText>E-mail ou senha incorretos</S.ErrorText>
-            </S.Error>
-          )}
 
           <S.Button type="submit">{loading ? <Loading /> : "Entrar"}</S.Button>
         </S.Form>
