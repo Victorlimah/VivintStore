@@ -24,36 +24,38 @@ export default function Login() {
     });
   };
 
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const regexEmail = /^[\w+.]+@\w+\.\w{2,}(?:\.\w{2})?$/;
+    navigate("/home");
 
-    try {
-      setLoading(true);
-      setErrors(false);
-      if (!regexEmail.test(inputs.email)) {
-        setLoading(false);
-        setErrors(true);
-        setStatusError("Use um email válido.");
-        setInputs({
-          ...inputs,
-          password: "",
-        });
-        return;
-      }
-      const response = await axios.post(`${API_URL}/sign-in`, inputs);
-      setLoading(false);
-      setUser(response.data);
-      navigate("/home");
-    } catch (err) {
-      setLoading(false);
-      setErrors(true);
-      setInputs({
-        ...inputs,
-        password: "",
-      });
-      setStatusError(err.response.data.message);
-    }
+    // try {
+    //   setLoading(true);
+    //   setErrors(false);
+    //   if (!regexEmail.test(inputs.email)) {
+    //     setLoading(false);
+    //     setErrors(true);
+    //     setStatusError("Use um email válido.");
+    //     setInputs({
+    //       ...inputs,
+    //       password: "",
+    //     });
+    //     return;
+    //   }
+    //   const response = await axios.post(`${API_URL}/sign-in`, inputs);
+    //   setLoading(false);
+    //   setUser(response.data);
+    //   navigate("/home");
+    // } catch (err) {
+    //   setLoading(false);
+    //   setErrors(true);
+    //   setInputs({
+    //     ...inputs,
+    //     password: "",
+    //   });
+    //   setStatusError(err.response.data.message);
+    // }
   };
 
   return (
