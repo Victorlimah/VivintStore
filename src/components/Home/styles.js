@@ -5,16 +5,18 @@ export const Main = styled.main`
 `
 export const NewProducts = styled.div`
     display: flex;
-    background-color: blue;
+    align-items: center;
     height: 240px;
+    gap: 20px;
+    overflow: scroll;
+    padding-left: 20px;
 `
 export const Categories = styled.div`
     display: flex;
     align-items: center;
-    background-color: red;
     height: 370px;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
     padding-top: 10px;
 `
 export const Category = styled.div`
