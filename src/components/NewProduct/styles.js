@@ -5,11 +5,10 @@ export const NewProductContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 170px;
     height: 200px;
     background-color: #8F8F8D;
     border-radius: 15px;
-    padding-top: 10px;
+    padding : 10px 10px 0 10px;
 `
 
 export const NewProductTitle = styled.p`
@@ -25,6 +24,9 @@ export const NewProductImage = styled.img`
     width: 150px;
     height: 80px;
     border-radius: 10px;
+`
+export const NewProductDescription = styled.p`
+    margin-top: 7px;
 `
 export const NewProductButton = styled.button`
     position: absolute;

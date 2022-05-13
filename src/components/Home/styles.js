@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Main = styled.main`
   padding-top: 10px;
+  padding-bottom: 60px;
 `
 export const NewProducts = styled.div`
     display: flex;
@@ -30,6 +31,7 @@ export const Category = styled.div`
     color: #FFFFFF;
     font-size: 30px;
     border-radius: 15px;
+    font-family: 'Koulen', cursive;
 `
 export const Options = styled.div`
     display: flex;
@@ -37,4 +39,5 @@ export const Options = styled.div`
     padding: 0 20px;
     margin-bottom: 20px;
     margin-top: 20px;
+    font-family: 'Koulen', cursive;
 `
