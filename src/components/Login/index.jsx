@@ -24,6 +24,7 @@ export default function Login() {
     });
   };
 
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const regexEmail = /^[\w+.]+@\w+\.\w{2,}(?:\.\w{2})?$/;
@@ -43,6 +44,7 @@ export default function Login() {
       }
       const response = await axios.post(`${API_URL}/sign-in`, inputs);
       setLoading(false);
+
       setUser(response.data);
       navigate("/home");
     } catch (err) {
@@ -55,6 +57,7 @@ export default function Login() {
       setStatusError(err.response.data.message);
     }
   };
+
 
   return (
     <>
