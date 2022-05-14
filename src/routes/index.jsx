@@ -5,6 +5,8 @@ import PageMain from "../pages/Main";
 import PageLogin from "../pages/Login";
 import PageRegister from "../pages/Register";
 import PageHome from "../pages/Home";
+import Category from "../pages/Category";
+import PageProduct from "../pages/Product";
 
 export default function Router() {
   const [API_URL] = useState("https://api-vivint.herokuapp.com");
@@ -21,9 +23,9 @@ export default function Router() {
           <Route path="/login" element={<PageLogin />} />
           <Route path="/register" element={<PageRegister />} />
           <Route path="/home" element={<PageHome />} />
-          <Route path="/" element={<h1>Colocar carrinho</h1>} />
-          <Route path="/" element={<h1>Colocar categorias</h1>} />
-          <Route path="/" element={<h1>Colocar produtos</h1>} />
+          <Route path="/carrinho" element={<h1>Colocar carrinho</h1>} />
+          <Route path="/categoria" element={<Category />} />
+          <Route path="/produto" element={<PageProduct />} />
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>

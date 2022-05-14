@@ -1,37 +1,39 @@
 import styled from "styled-components";
 
-export const NewProductContainer = styled.div`
+export const ProductContainer = styled.div`
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 360px;
     height: 200px;
     background-color: #8F8F8D;
     border-radius: 15px;
     padding : 10px 10px 0 10px;
 `
 
-export const NewProductTitle = styled.p`
-    margin-top: 10px;
-`
-
-export const NewProductPrice = styled.p`
+export const ProductTitle = styled.p`
     margin-left: -60px;
     margin-top: 10px;
 `
-export const NewProductImage = styled.img`
-    width: 150px;
-    height: 80px;
+
+export const ProductPrice = styled.p`
+    margin-left: -60px;
+    margin-top: 10px;
+`
+export const ProductImage = styled.img`
+    width: 280px;
+    height: 120px;
     border-radius: 10px;
 `
-export const NewProductDescription = styled.p`
+export const ProductDescription = styled.p`
     margin-top: 7px;
 `
-export const NewProductButton = styled.button`
+export const ProductButton = styled.button`
     position: absolute;
     bottom: 0;
     right: 0;
-    width: 100px ;
+    width: 150px ;
     border-radius: 10px 0 10px 0;
     border: none;
     color: #FFFFFF;
