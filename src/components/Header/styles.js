@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { FaShoppingCart } from "react-icons/fa";
 
 export const Header = styled.header`
     display: flex;
@@ -6,8 +7,7 @@ export const Header = styled.header`
     justify-content: space-between;
     height: 70px;
     width: 100vw;    
-    padding: 20px;
-    background-color: #41382f;
+    background-color: #112B3C;
     color: #fff;
     z-index: 1;
     position: relative;
@@ -17,7 +17,20 @@ export const Header = styled.header`
     
 `
 export const H1 = styled.h1`
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
     font-size: 1.8em;
-    margin-left: 140px;
     color: #CB9A62;
+`
+
+export const Logo = styled.image`
+    width: 10px;
+    height: 10px;
+`
+
+export const Cart = styled(FaShoppingCart)`
+    position: absolute;
+    right: 40px;
+    font-size: 25px;
 `

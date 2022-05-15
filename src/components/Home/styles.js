@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const Main = styled.main`
+  width: 100vw;
+  height: 100vh;
   padding-top: 10px;
   padding-bottom: 60px;
 `
@@ -27,7 +29,7 @@ export const Category = styled.div`
     padding: 20px;
     height: 60px;
     width: 90%;
-    background-color: #453D32;
+    background-color: #112B3C;
     color: #FFFFFF;
     font-size: 30px;
     border-radius: 15px;

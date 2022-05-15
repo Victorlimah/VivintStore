@@ -1,13 +1,32 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-image: linear-gradient(45deg, #06113C, #FF8C32);
+  background-size: 200% 200%;
+  animation: colors 15s ease infinite;
+
+  @keyframes colors {
+    0%{
+      background-position: 0% 50%;
+    }
+
+    50%{
+      background-position: 100% 50%  ;
+    }
+
+    100%{
+      background-position: 0% 50% ;
+    }
+  }
 `;
+
 
 export const Header = styled.header`
   width: 100%;
@@ -16,7 +35,7 @@ export const Header = styled.header`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #ffcd94;
+
 `;
 
 export const Logo = styled.img`
@@ -25,6 +44,7 @@ export const Logo = styled.img`
   max-width: 300px;
   max-height: 300px;
   margin-bottom: 20px;
+  margin-top: 100px;
 `;
 
 export const InfosContainer = styled.div`
@@ -33,7 +53,6 @@ export const InfosContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #41382f;
 `;
 
 export const Title = styled.h1`
@@ -63,45 +82,46 @@ export const ButtonContainer = styled.div`
 `;
 
 export const Login = styled.button`
+  font-family: 'Inter', sans-serif;
   width: 50%;
-  padding: 16px;
+  height: 70px;
+  color: #73777B;
+  font-size: 20px;
+  background-color: #2F8F9D;
+  border-color: #FFFFFF;
+  border-radius: 30px;
   border: none;
-  border-radius: 8px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #fff;
-  color: #41382f;
-  background-color: #cb9a62;
-  font-size: 18px;
-  cursor: pointer;
-  transition: 0.2s;
-  margin-bottom: 15px;
-
-  &:hover {
-    background-color: #b2aeab;
-  }
+	display: block;
+	position: relative;
+  background-color: #EFEFEF;
+	transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+  margin-bottom: 20px;
+    &:hover {
+      color: black !important;
+      background-color: transparent;
+      text-shadow: none;
+      cursor: pointer;
+    }
 `;
 
 export const Register = styled.button`
+  font-family: 'Inter', sans-serif;
   width: 50%;
-  padding: 16px;
+  height: 70px;
+  color: #73777B;
+  font-size: 20px;
+  background-color: #2F8F9D;
+  border-color: #FFFFFF;
+  border-radius: 30px;
   border: none;
-  border-radius: 8px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #fff;
-  background-color: #41382f;
-  color: #cb9a62;
-  font-size: 18px;
-  cursor: pointer;
-  transition: 0.2s;
-
-  &:hover {
-    background-color: #b2aeab;
-    color: #41382f;
-  }
+	display: block;
+	position: relative;
+  background-color: #EFEFEF;
+	transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+    &:hover {
+      color: black !important;
+      background-color: transparent;
+      text-shadow: none;
+      cursor: pointer;
+    }
 `;
