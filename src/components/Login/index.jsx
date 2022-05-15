@@ -24,7 +24,6 @@ export default function Login() {
     });
   };
 
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     const regexEmail = /^[\w+.]+@\w+\.\w{2,}(?:\.\w{2})?$/;
@@ -59,7 +58,6 @@ export default function Login() {
       setStatusError(err.response.data.message);
     }
   };
-
 
   return (
     <>
