@@ -8,7 +8,6 @@ import UserContext from "./../../provider/UserContext";
 export default function Cart() {
   const { API_URL, user } = useContext(UserContext);
   const navigate = useNavigate();
-  console.log(user.token);
 
   const authorization = {
     headers: { Authorization: `Bearer ${user.token}` },
@@ -80,11 +79,11 @@ export default function Cart() {
                 </S.HeaderProduct>
                 <S.DivPrice>
                   <S.ProductInfo>
-                    <S.AddRemoveButton onClick={() => putQuantity(id, "more")}>
+                    <S.AddRemoveButton onClick={() => putQuantity(id, "minus")}>
                       -
                     </S.AddRemoveButton>
                     <S.Quantity>{quantity}</S.Quantity>
-                    <S.AddRemoveButton onClick={() => putQuantity(id, "minus")}>
+                    <S.AddRemoveButton onClick={() => putQuantity(id, "more")}>
                       +
                     </S.AddRemoveButton>
                   </S.ProductInfo>
@@ -189,11 +188,13 @@ export default function Cart() {
   }
 
   async function deleteItem(id) {
-    try {
-      await axios.delete(`${API_URL}/cart/${id}`, authorization);
-      loadProducts();
-    } catch (e) {
-      console.log(e);
+    if (window.confirm("Deseja realmente excluir o item?")) {
+      try {
+        await axios.delete(`${API_URL}/cart/${id}`, authorization);
+        loadProducts();
+      } catch (e) {
+        console.log(e);
+      }
     }
   }
 
@@ -235,6 +236,11 @@ export default function Cart() {
   }
 
   async function buyOrder() {
+    if (!adress.exist) {
+      alert("Adicione um endereço de entrega");
+      return;
+    }
+
     if (window.confirm("Deseja realmente finalizar o pedido?")) {
       const order = {
         adress: adress.adress,
