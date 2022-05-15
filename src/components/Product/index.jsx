@@ -39,7 +39,7 @@ export default function Product() {
         </S.ProductInfo>
         <S.styledButton>
           <S.styledCart />
-          <p onClick={() => addCart(id)} className="text">
+          <p onClick={() => addCart(title)} className="text">
             Adicionar ao carrinho
           </p>
         </S.styledButton>
@@ -47,16 +47,13 @@ export default function Product() {
     </S.Main>
   );
 
-  async function addCart(id) {
+  async function addCart(title) {
     const obj = {
-      productId: id,
-      quantity: 1,
-      price,
+      name: title,
     };
 
     try {
-      const response = await axios.post(`${API_URL}/cart`, obj, authorization);
-      console.log(response.data);
+      await axios.post(`${API_URL}/cart`, obj, authorization);
       alert("Produto adicionado ao carrinho");
     } catch (e) {
       console.log(e);
