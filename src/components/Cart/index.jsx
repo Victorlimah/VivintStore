@@ -1,19 +1,21 @@
 import * as S from "./styles";
 import axios from "axios";
 import Header from "./../Header";
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
 import UserContext from "./../../provider/UserContext";
 
 export default function Cart() {
-  const { API_URL } = useContext(UserContext);
-  const { user } = useContext(UserContext);
+  const { API_URL, user } = useContext(UserContext);
+  const navigate = useNavigate();
+
   const authorization = {
     headers: { Authorization: `Bearer ${user.token}` },
   };
-  //const navigate = useNavigate();
 
-  const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState({
+    products: [],
+  });
 
   const [form, setForm] = useState({
     adress: "",
@@ -29,10 +31,6 @@ export default function Cart() {
   });
 
   useEffect(() => {
-    async function loadProducts() {
-      const response = await axios.get(`${API_URL}/cart`, authorization);
-      setProducts(response.data);
-    }
     loadProducts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -42,7 +40,7 @@ export default function Cart() {
       <Header />
       <S.PageTitle>Carrinho</S.PageTitle>
 
-      {products.length === 0 ? CartEmpty() : CartNotEmpty()}
+      {cart.products.length === 0 ? CartEmpty() : CartNotEmpty()}
     </>
   );
 
@@ -71,23 +69,26 @@ export default function Cart() {
     return (
       <S.CartContainer>
         <S.CartList>
-          <S.CartItem>
-            <S.CartItemImg src="https://images.kabum.com.br/produtos/fotos/267057/pc-gamer-skill-amd-athlon-3000g-rgb-8gb-ddr4-ssd-240gb-hd-1tb-linux-preto-48994_1637610817_original.jpg" />
-            <S.CartItemInfo>
-              <S.HeaderProduct>
-                <S.CartItemTitle>Pc Gamer</S.CartItemTitle>
-                <S.DeleteItem>X</S.DeleteItem>
-              </S.HeaderProduct>
-              <S.DivPrice>
-                <S.ProductInfo>
-                  <S.AddRemoveButton>-</S.AddRemoveButton>
-                  <S.Quantity>1</S.Quantity>
-                  <S.AddRemoveButton>+</S.AddRemoveButton>
-                </S.ProductInfo>
-                <S.CartItemPrice>R$ 1.000,00</S.CartItemPrice>
-              </S.DivPrice>
-            </S.CartItemInfo>
-          </S.CartItem>
+          {cart.products.map(({ id, title, price, image, quantity }) => (
+            <S.CartItem key={id}>
+              <S.CartItemImg src={image} />
+              <S.CartItemInfo>
+                <S.HeaderProduct>
+                  <S.CartItemTitle>{title}</S.CartItemTitle>
+                  <S.DeleteItem onClick={() => deleteItem(id)}>X</S.DeleteItem>
+                </S.HeaderProduct>
+                <S.DivPrice>
+                  <S.ProductInfo>
+                    <S.AddRemoveButton>-</S.AddRemoveButton>
+                    <S.Quantity>{quantity}</S.Quantity>
+                    <S.AddRemoveButton>+</S.AddRemoveButton>
+                  </S.ProductInfo>
+
+                  <S.CartItemPrice>{transformBRL(price)}</S.CartItemPrice>
+                </S.DivPrice>
+              </S.CartItemInfo>
+            </S.CartItem>
+          ))}
         </S.CartList>
       </S.CartContainer>
     );
@@ -145,9 +146,12 @@ export default function Cart() {
       <S.Footer>
         <S.FooterContainer>
           <S.FooterText>Total</S.FooterText>
-          <S.FooterText>R$ 0,00</S.FooterText>
+
+          <S.FooterText>{transformBRL(cart.total)}</S.FooterText>
         </S.FooterContainer>
-        <S.FooterButton>Finalizar Pedido</S.FooterButton>
+        <S.FooterButton onClick={() => buyOrder()}>
+          Finalizar Pedido
+        </S.FooterButton>
       </S.Footer>
     );
   }
@@ -174,6 +178,27 @@ export default function Cart() {
     }
   }
 
+  async function loadProducts() {
+    const response = await axios.get(`${API_URL}/cart`, authorization);
+    setCart(response.data);
+  }
+
+  async function deleteItem(id) {
+    try {
+      await axios.delete(`${API_URL}/cart/${id}`, authorization);
+      loadProducts();
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  function transformBRL(value) {
+    return value.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    });
+  }
+
   function editAdress() {
     setAdress({
       exist: false,
@@ -183,5 +208,26 @@ export default function Cart() {
   function handleInputChange(event) {
     const { name, value } = event.target;
     setForm({ ...form, [name]: value });
+  }
+
+  async function buyOrder() {
+    if (window.confirm("Deseja realmente finalizar o pedido?")) {
+      const order = {
+        adress: adress.adress,
+        zipCode: adress.cep,
+        localidade: adress.localidade,
+        uf: adress.uf,
+        products: cart.products,
+      };
+
+      try {
+        await axios.post(`${API_URL}/order`, order, authorization);
+        alert("Pedido realizado com sucesso");
+        navigate("/home");
+      } catch (e) {
+        console.log(e);
+        alert("Erro ao realizar pedido");
+      }
+    }
   }
 }
