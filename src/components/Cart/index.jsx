@@ -2,12 +2,18 @@ import * as S from "./styles";
 import axios from "axios";
 import Header from "./../Header";
 //import { useNavigate } from "react-router-dom";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import UserContext from "./../../provider/UserContext";
 
 export default function Cart() {
   const { API_URL } = useContext(UserContext);
+  const { user } = useContext(UserContext);
+  const authorization = {
+    headers: { Authorization: `Bearer ${user.token}` },
+  };
   //const navigate = useNavigate();
+
+  const [products, setProducts] = useState([]);
 
   const [form, setForm] = useState({
     adress: "",
@@ -22,41 +28,49 @@ export default function Cart() {
     uf: "",
   });
 
-  console.log(adress);
+  useEffect(() => {
+    async function loadProducts() {
+      const response = await axios.get(`${API_URL}/cart`, authorization);
+      setProducts(response.data);
+    }
+    loadProducts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
       <Header />
-      <S.PageTitle>CART</S.PageTitle>
+      <S.PageTitle>Carrinho</S.PageTitle>
 
-      {CartContainer()}
-      {adress.exist ? DeliveryInfo() : GetAdressInfo()}
-
-      {Footer()}
+      {products.length === 0 ? CartEmpty() : CartNotEmpty()}
     </>
   );
+
+  function CartEmpty() {
+    return (
+      <S.EmptyCart>
+        <S.EmptyCartText>
+          Seu carrinho está vazio, volte para a página inicial para adicionar
+          produtos.
+        </S.EmptyCartText>
+      </S.EmptyCart>
+    );
+  }
+
+  function CartNotEmpty() {
+    return (
+      <>
+        {CartContainer()}
+        {adress.exist ? DeliveryInfo() : GetAdressInfo()}
+        {Footer()}
+      </>
+    );
+  }
 
   function CartContainer() {
     return (
       <S.CartContainer>
         <S.CartList>
-          <S.CartItem>
-            <S.CartItemImg src="https://images.kabum.com.br/produtos/fotos/267057/pc-gamer-skill-amd-athlon-3000g-rgb-8gb-ddr4-ssd-240gb-hd-1tb-linux-preto-48994_1637610817_original.jpg" />
-            <S.CartItemInfo>
-              <S.HeaderProduct>
-                <S.CartItemTitle>Pc Gamer</S.CartItemTitle>
-                <S.DeleteItem>X</S.DeleteItem>
-              </S.HeaderProduct>
-              <S.DivPrice>
-                <S.ProductInfo>
-                  <S.AddRemoveButton>-</S.AddRemoveButton>
-                  <S.Quantity>1</S.Quantity>
-                  <S.AddRemoveButton>+</S.AddRemoveButton>
-                </S.ProductInfo>
-                <S.CartItemPrice>R$ 1.000,00</S.CartItemPrice>
-              </S.DivPrice>
-            </S.CartItemInfo>
-          </S.CartItem>
           <S.CartItem>
             <S.CartItemImg src="https://images.kabum.com.br/produtos/fotos/267057/pc-gamer-skill-amd-athlon-3000g-rgb-8gb-ddr4-ssd-240gb-hd-1tb-linux-preto-48994_1637610817_original.jpg" />
             <S.CartItemInfo>

@@ -21,7 +21,25 @@ export const PageTitle = styled.h1`
   color: #000;
   text-align: center;
   width: 100%;
-  margin-top: 10px;
+  margin: 15px 0;
+`;
+
+export const EmptyCart = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #f5f5f5;
+  padding: 20px;
+`;
+
+export const EmptyCartText = styled.p`
+  font-size: 20px;
+  color: #000;
+  text-align: center;
+  width: 100%;
 `;
 
 export const CartContainer = styled.div`
