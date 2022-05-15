@@ -43,6 +43,8 @@ export default function Login() {
         return;
       }
       const response = await axios.post(`${API_URL}/sign-in`, inputs);
+      localStorage.setItem("token", response.data.token);
+
       setLoading(false);
 
       setUser(response.data);
