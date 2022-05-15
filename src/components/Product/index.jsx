@@ -8,7 +8,8 @@ export default function Product() {
     const id = new URLSearchParams(window.location.search).get("id");
     const [product, setProduct] = useState({});
     const { API_URL } = useContext(UserContext);
-
+    const { user } = useContext(UserContext);
+    const token = localStorage.getItem("token");
 
     useEffect(() => {
         async function loadProduct() {
@@ -17,7 +18,7 @@ export default function Product() {
             setProduct(response.data);
         }
         loadProduct();
-    }, [])
+    }, []);
 
     const { price } = product
     return (
@@ -34,7 +35,7 @@ export default function Product() {
                 </S.ProductInfo>
                 <S.styledButton>
                     <S.styledCart />
-                    <p className="text">COMPRAR</p>
+                    <p className="text" >COMPRAR</p>
                 </S.styledButton>
             </S.Product>
         </S.Main>
