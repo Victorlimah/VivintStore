@@ -8,6 +8,7 @@ import UserContext from "./../../provider/UserContext";
 export default function Cart() {
   const { API_URL, user } = useContext(UserContext);
   const navigate = useNavigate();
+  console.log(user.token);
 
   const authorization = {
     headers: { Authorization: `Bearer ${user.token}` },
@@ -79,9 +80,13 @@ export default function Cart() {
                 </S.HeaderProduct>
                 <S.DivPrice>
                   <S.ProductInfo>
-                    <S.AddRemoveButton>-</S.AddRemoveButton>
+                    <S.AddRemoveButton onClick={() => putQuantity(id, "more")}>
+                      -
+                    </S.AddRemoveButton>
                     <S.Quantity>{quantity}</S.Quantity>
-                    <S.AddRemoveButton>+</S.AddRemoveButton>
+                    <S.AddRemoveButton onClick={() => putQuantity(id, "minus")}>
+                      +
+                    </S.AddRemoveButton>
                   </S.ProductInfo>
 
                   <S.CartItemPrice>{transformBRL(price)}</S.CartItemPrice>
@@ -186,6 +191,25 @@ export default function Cart() {
   async function deleteItem(id) {
     try {
       await axios.delete(`${API_URL}/cart/${id}`, authorization);
+      loadProducts();
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async function putQuantity(id, type) {
+    let newQuantity;
+    let product = cart.products.find((product) => product.id === id);
+
+    if (type === "more") newQuantity = product.quantity + 1;
+    else newQuantity = product.quantity - 1;
+
+    try {
+      await axios.put(
+        `${API_URL}/cart/${id}`,
+        { quantity: newQuantity },
+        authorization
+      );
       loadProducts();
     } catch (e) {
       console.log(e);
