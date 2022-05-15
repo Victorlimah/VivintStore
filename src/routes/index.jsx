@@ -30,7 +30,7 @@ export default function Router() {
           <Route path="/carrinho" element={<PageCart />} />
           <Route path="/categoria" element={<Category />} />
           <Route path="/produto" element={<PageProduct />} />
-          <Route path="/history" element={<PageHistoryOrder />} />
+          <Route path="/historico" element={<PageHistoryOrder />} />
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>

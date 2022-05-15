@@ -5,10 +5,12 @@ import { useNavigate } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
 import UserContext from "./../../provider/UserContext";
 import { AiFillCheckCircle } from "react-icons/ai";
+import { BsTrashFill } from "react-icons/bs";
 
 export default function Cart() {
   const { API_URL, user } = useContext(UserContext);
   const [sucess, setSucess] = useState(false);
+  const [orderID, setOrderID] = useState("");
   const navigate = useNavigate();
 
   const authorization = {
@@ -85,9 +87,7 @@ export default function Cart() {
                 <S.CartItemInfo>
                   <S.HeaderProduct>
                     <S.CartItemTitle>{title}</S.CartItemTitle>
-                    <S.DeleteItem onClick={() => deleteItem(id)}>
-                      X
-                    </S.DeleteItem>
+                    <BsTrashFill onClick={() => deleteItem(id)} />
                   </S.HeaderProduct>
                   <S.DivPrice>
                     <S.ProductInfo>
@@ -178,7 +178,6 @@ export default function Cart() {
   }
 
   function Sucess() {
-    const order = { id: 15555 };
     return (
       <S.ContainerSucess>
         <S.Heading>Woo Hoo!</S.Heading>
@@ -186,7 +185,7 @@ export default function Cart() {
 
         <AiFillCheckCircle className="icon" />
 
-        <S.SucessOrder>Pedido #{order.id}</S.SucessOrder>
+        <S.SucessOrder>Pedido #{orderID}</S.SucessOrder>
         <S.Paragraph>
           Obrigado por comprar conosco! Seu pedido já está sendo preparado pela
           equipe Vivint Store e em breve será entregue automágicamente!
@@ -288,8 +287,14 @@ export default function Cart() {
       };
 
       try {
-        await axios.post(`${API_URL}/order`, order, authorization);
+        const response = await axios.post(
+          `${API_URL}/order`,
+          order,
+          authorization
+        );
         alert("Pedido realizado com sucesso");
+        setOrderID(response.data.orderID);
+
         setSucess(true);
       } catch (e) {
         console.log(e);

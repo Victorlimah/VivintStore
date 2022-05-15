@@ -94,24 +94,13 @@ export const HeaderProduct = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-size: 30px;
 `;
 
 export const CartItemTitle = styled.h1`
   font-size: 24px;
   color: #000;
   width: 100%;
-`;
-
-export const DeleteItem = styled.button`
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background-color: #fff;
-  border: 1px solid #000;
-  color: #000;
-  font-size: 20px;
-  margin-left: 10px;
-  cursor: pointer;
 `;
 
 export const CartItemPrice = styled.h1`
@@ -133,29 +122,30 @@ export const ProductInfo = styled.div`
   width: 50%;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
 `;
 
 export const AddRemoveButton = styled.button`
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   border: none;
-  background-color: #f00;
-  color: #fff;
+  background-color: #112b3c;
+  color: #cb9a62;
   font-size: 18px;
   font-weight: bold;
   margin-right: 7px;
 `;
 
 export const Quantity = styled.h1`
-  width: 25px;
-  height: 25px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   border: none;
-  background-color: #000;
-  color: #fff;
+  background-color: #cb9a62;
+  color: #112b3c;
   font-size: 20px;
+  font-weight: bold;
   margin-right: 7px;
   display: flex;
   justify-content: center;
