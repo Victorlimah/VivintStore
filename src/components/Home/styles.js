@@ -9,7 +9,7 @@ export const Main = styled.main`
 export const NewProducts = styled.div`
     display: flex;
     align-items: center;
-    height: 240px;
+    height: 400px;
     gap: 20px;
     overflow: scroll;
     padding-left: 20px;
