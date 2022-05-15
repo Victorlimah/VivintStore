@@ -10,8 +10,8 @@ import PageProduct from "../pages/Product";
 import PageCart from "../pages/Cart";
 
 export default function Router() {
-  //const [API_URL] = useState("https://api-vivint.herokuapp.com");
-  const [API_URL] = useState("http://localhost:5000");
+  const [API_URL] = useState("https://api-vivint.herokuapp.com");
+  //const [API_URL] = useState("http://localhost:5000");
 
   const [user, setUser] = useState({
     name: "",
