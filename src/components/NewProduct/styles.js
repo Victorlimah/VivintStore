@@ -6,7 +6,7 @@ export const NewProductContainer = styled.div`
     flex-direction: column;
     align-items: center;
     height: 200px;
-    background-color: #8F8F8D;
+    background-color: #EFEFEF;
     border-radius: 15px;
     padding : 10px 10px 0 10px;
 `

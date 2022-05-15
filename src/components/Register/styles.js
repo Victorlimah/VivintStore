@@ -7,8 +7,24 @@ export const Container = styled.div`
   justify-content: center;
   height: 100vh;
   width: 100vw;
-  background-color: #41382f;
   color: #fff;
+  background-image: linear-gradient(45deg, #06113C, #FF8C32);
+  background-size: 200% 200%;
+  animation: colors 15s ease infinite;
+
+  @keyframes colors {
+    0%{
+      background-position: 0% 50%;
+    }
+
+    50%{
+      background-position: 100% 50%  ;
+    }
+
+    100%{
+      background-position: 0% 50% ;
+    }
+  }
 `;
 
 export const Title = styled.h1`
@@ -26,7 +42,6 @@ export const Form = styled.form`
   height: auto;
   padding: 1.5rem 1rem;
   border-radius: 5px;
-  background-color: #665f55;
 `;
 
 export const FormTitle = styled.h2`
@@ -41,10 +56,9 @@ export const Input = styled.input`
   width: 85%;
   padding: 1rem;
   border: 1px solid #fff;
-  border-radius: 5px;
+  border-radius: 15px;
   margin-bottom: 1rem;
-  background-color: #b2aeab;
-
+  background-color: #FFFFFF;
   font-size: 18px;
 
   &:focus {
@@ -54,14 +68,20 @@ export const Input = styled.input`
 
 export const Button = styled.button`
   width: 85%;
-  height: 55px;
+  height: 65px;
   border: 1px solid #fff;
-  border-radius: 5px;
-  background-color: #41382f;
+  border-radius: 15px;
+  background-color: #000000;
   color: #fff;
   font-weight: bold;
-  cursor: pointer;
   font-size: 18px;
+  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+    &:hover {
+      color: black !important;
+      background-color: transparent;
+      text-shadow: none;
+      cursor: pointer;
+    }
 `;
 
 export const Error = styled.div`
