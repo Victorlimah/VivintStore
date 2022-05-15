@@ -6,18 +6,22 @@ export const NewProductContainer = styled.div`
     flex-direction: column;
     align-items: center;
     height: 200px;
+    width: 200px;
     background-color: #EFEFEF;
     border-radius: 15px;
     padding : 10px 10px 0 10px;
 `
 
 export const NewProductTitle = styled.p`
-    margin-top: 10px;
+    margin-top: 30px;
+
 `
 
 export const NewProductPrice = styled.p`
     margin-left: -60px;
     margin-top: 10px;
+    color: green;
+    margin-top: 25px;
 `
 export const NewProductImage = styled.img`
     width: 150px;
