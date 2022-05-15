@@ -4,9 +4,13 @@ import Header from "./../Header";
 import { useNavigate } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
 import UserContext from "./../../provider/UserContext";
+import { AiFillCheckCircle } from "react-icons/ai";
+import { BsTrashFill } from "react-icons/bs";
 
 export default function Cart() {
   const { API_URL, user } = useContext(UserContext);
+  const [sucess, setSucess] = useState(false);
+  const [orderID, setOrderID] = useState("");
   const navigate = useNavigate();
 
   const authorization = {
@@ -38,20 +42,26 @@ export default function Cart() {
   return (
     <>
       <Header />
-      <S.PageTitle>Carrinho</S.PageTitle>
 
-      {cart.products.length === 0 ? CartEmpty() : CartNotEmpty()}
+      {sucess
+        ? Sucess()
+        : cart.products.length === 0
+        ? CartEmpty()
+        : CartNotEmpty()}
     </>
   );
 
   function CartEmpty() {
     return (
-      <S.EmptyCart>
-        <S.EmptyCartText>
-          Seu carrinho está vazio, volte para a página inicial para adicionar
-          produtos.
-        </S.EmptyCartText>
-      </S.EmptyCart>
+      <>
+        <S.PageTitle>Carrinho</S.PageTitle>
+        <S.EmptyCart>
+          <S.EmptyCartText>
+            Seu carrinho está vazio, volte para a página inicial para adicionar
+            produtos.
+          </S.EmptyCartText>
+        </S.EmptyCart>
+      </>
     );
   }
 
@@ -67,34 +77,41 @@ export default function Cart() {
 
   function CartContainer() {
     return (
-      <S.CartContainer>
-        <S.CartList>
-          {cart.products.map(({ id, title, price, image, quantity }) => (
-            <S.CartItem key={id}>
-              <S.CartItemImg src={image} />
-              <S.CartItemInfo>
-                <S.HeaderProduct>
-                  <S.CartItemTitle>{title}</S.CartItemTitle>
-                  <S.DeleteItem onClick={() => deleteItem(id)}>X</S.DeleteItem>
-                </S.HeaderProduct>
-                <S.DivPrice>
-                  <S.ProductInfo>
-                    <S.AddRemoveButton onClick={() => putQuantity(id, "minus")}>
-                      -
-                    </S.AddRemoveButton>
-                    <S.Quantity>{quantity}</S.Quantity>
-                    <S.AddRemoveButton onClick={() => putQuantity(id, "more")}>
-                      +
-                    </S.AddRemoveButton>
-                  </S.ProductInfo>
+      <>
+        <S.PageTitle>Carrinho</S.PageTitle>
+        <S.CartContainer>
+          <S.CartList>
+            {cart.products.map(({ id, title, price, image, quantity }) => (
+              <S.CartItem key={id}>
+                <S.CartItemImg src={image} />
+                <S.CartItemInfo>
+                  <S.HeaderProduct>
+                    <S.CartItemTitle>{title}</S.CartItemTitle>
+                    <BsTrashFill onClick={() => deleteItem(id)} />
+                  </S.HeaderProduct>
+                  <S.DivPrice>
+                    <S.ProductInfo>
+                      <S.AddRemoveButton
+                        onClick={() => putQuantity(id, "minus")}
+                      >
+                        -
+                      </S.AddRemoveButton>
+                      <S.Quantity>{quantity}</S.Quantity>
+                      <S.AddRemoveButton
+                        onClick={() => putQuantity(id, "more")}
+                      >
+                        +
+                      </S.AddRemoveButton>
+                    </S.ProductInfo>
 
-                  <S.CartItemPrice>{transformBRL(price)}</S.CartItemPrice>
-                </S.DivPrice>
-              </S.CartItemInfo>
-            </S.CartItem>
-          ))}
-        </S.CartList>
-      </S.CartContainer>
+                    <S.CartItemPrice>{transformBRL(price)}</S.CartItemPrice>
+                  </S.DivPrice>
+                </S.CartItemInfo>
+              </S.CartItem>
+            ))}
+          </S.CartList>
+        </S.CartContainer>
+      </>
     );
   }
 
@@ -157,6 +174,25 @@ export default function Cart() {
           Finalizar Pedido
         </S.FooterButton>
       </S.Footer>
+    );
+  }
+
+  function Sucess() {
+    return (
+      <S.ContainerSucess>
+        <S.Heading>Woo Hoo!</S.Heading>
+        <S.PageSucessTitle>Pedido realizado com sucesso!</S.PageSucessTitle>
+
+        <AiFillCheckCircle className="icon" />
+
+        <S.SucessOrder>Pedido #{orderID}</S.SucessOrder>
+        <S.Paragraph>
+          Obrigado por comprar conosco! Seu pedido já está sendo preparado pela
+          equipe Vivint Store e em breve será entregue automágicamente!
+        </S.Paragraph>
+
+        <S.Button onClick={() => navigate("/home")}>Voltar para home</S.Button>
+      </S.ContainerSucess>
     );
   }
 
@@ -251,9 +287,15 @@ export default function Cart() {
       };
 
       try {
-        await axios.post(`${API_URL}/order`, order, authorization);
+        const response = await axios.post(
+          `${API_URL}/order`,
+          order,
+          authorization
+        );
         alert("Pedido realizado com sucesso");
-        navigate("/home");
+        setOrderID(response.data.orderID);
+
+        setSucess(true);
       } catch (e) {
         console.log(e);
         alert("Erro ao realizar pedido");

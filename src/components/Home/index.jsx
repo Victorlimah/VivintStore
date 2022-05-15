@@ -17,6 +17,7 @@ export default function Home() {
       setHighlights(response.data);
     }
     loadHighlights();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -8,6 +8,7 @@ import PageHome from "../pages/Home";
 import Category from "../pages/Category";
 import PageProduct from "../pages/Product";
 import PageCart from "../pages/Cart";
+import PageHistoryOrder from "../pages/HistoryOrder";
 
 export default function Router() {
   const [API_URL] = useState("https://api-vivint.herokuapp.com");
@@ -29,6 +30,7 @@ export default function Router() {
           <Route path="/carrinho" element={<PageCart />} />
           <Route path="/categoria" element={<Category />} />
           <Route path="/produto" element={<PageProduct />} />
+          <Route path="/historico" element={<PageHistoryOrder />} />
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>
