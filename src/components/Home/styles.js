@@ -20,7 +20,7 @@ export const NewProducts = styled.div`
     @media (max-width: 768px) {
         grid-template-columns: repeat(1, 1fr);
         margin-left: 27px;
-        margin-top: 300px;
+        margin-top: 30px;
     }
 `
 export const Categories = styled.div`
@@ -62,8 +62,14 @@ export const Options = styled.div`
     margin-top: 20px;
     font-family: 'Koulen', cursive;
     font-size: 40px;
-    padding-left: 550px;
+    margin-left: 550px;
     &:hover {
         cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+        margin-left: 10px;
+        margin-top: 420px;
+        font-size: 30px;
     }
 `
