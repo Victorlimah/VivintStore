@@ -8,7 +8,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-image: linear-gradient(45deg, #06113C, #FF8C32);
+  background-image: linear-gradient(45deg, #06113C, #73777B);
   background-size: 200% 200%;
   animation: colors 5s ease infinite;
 
@@ -81,7 +81,7 @@ export const ButtonContainer = styled.div`
   flex-direction: column;
 `;
 
-export const Login = styled.button`
+export const ButtonAcess = styled.button`
   font-family: 'Inter', sans-serif;
   width: 50%;
   height: 70px;
@@ -101,27 +101,8 @@ export const Login = styled.button`
       background-color: transparent;
       text-shadow: none;
       cursor: pointer;
+      border: 2px solid #FFFFFF;
     }
 `;
 
-export const Register = styled.button`
-  font-family: 'Inter', sans-serif;
-  width: 50%;
-  height: 70px;
-  color: #73777B;
-  font-size: 20px;
-  background-color: #2F8F9D;
-  border-color: #FFFFFF;
-  border-radius: 30px;
-  border: none;
-	display: block;
-	position: relative;
-  background-color: #EFEFEF;
-	transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
-    &:hover {
-      color: black !important;
-      background-color: transparent;
-      text-shadow: none;
-      cursor: pointer;
-    }
-`;
+

@@ -8,7 +8,7 @@ export const Container = styled.div`
   height: 100vh;
   width: 100vw;
   color: #fff;
-  background-image: linear-gradient(45deg, #06113C, #FF8C32);
+  background-image: linear-gradient(45deg, #06113C, #73777B);
   background-size: 200% 200%;
   animation: colors 15s ease infinite;
 

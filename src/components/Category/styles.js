@@ -1,21 +1,27 @@
 import styled from "styled-components";
 
 export const Main = styled.main`
-    padding-top: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
     background-color: #EFEFEF;
-    display: grid;
-    grid-template-columns: 1fr;
+    padding-top: 160px;
+    
 `
 
 export const Tittle = styled.h1`
     font-family: 'Koulen', cursive;
-    font-size: 30px;
+    font-size: 50px;
     margin-bottom: 30px;
+    text-align: center;
 `
 
 export const Products = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: 100%;
+    display: grid;
+    place-content: center;
+    grid-template-columns: repeat(auto-fill, 360px);
     gap: 20px;
+    margin-bottom: 50px;
 `

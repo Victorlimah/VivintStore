@@ -19,6 +19,13 @@ export default function Product() {
     loadProduct();
   }, []);
 
+  function transformBRL(value) {
+    return value.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    });
+  }
+
   const { price, image, title, description } = product;
   return (
     <S.Main>

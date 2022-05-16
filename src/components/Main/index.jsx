@@ -17,11 +17,11 @@ export default function Main() {
           <br />É de graça, e sempre será.
         </S.Subtitle>
         <S.ButtonContainer>
-          <S.Login onClick={() => navigate("/login")}>LOGIN</S.Login>
+          <S.ButtonAcess onClick={() => navigate("/login")}>LOGIN</S.ButtonAcess>
 
-          <S.Register className="register" onClick={() => navigate("/register")}>
+          <S.ButtonAcess className="register" onClick={() => navigate("/register")}>
             REGISTRE-SE
-          </S.Register>
+          </S.ButtonAcess>
         </S.ButtonContainer>
       </S.InfosContainer>
     </S.Container>

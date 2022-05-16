@@ -15,7 +15,8 @@ export const Rigth = styled.div`
 `
 export const NewProducts = styled.div`
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    width: 70vw;
+    grid-template-columns: repeat(auto-fill, 360px);
     gap: 20px;
     margin-left: 550px;
     @media (max-width: 768px) {
@@ -57,6 +58,7 @@ export const Category = styled.div`
 `
 export const Options = styled.div`
     display: flex;
+    width: 63vw;
     justify-content: space-between;
     padding: 0 20px;
     margin-bottom: 20px;
@@ -69,6 +71,7 @@ export const Options = styled.div`
     }
 
     @media (max-width: 768px) {
+        width: 95vw;
         margin-left: 10px;
         margin-top: 420px;
         font-size: 30px;

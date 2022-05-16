@@ -33,6 +33,7 @@ export const EmptyCart = styled.div`
   flex-direction: column;
   background-color: #f5f5f5;
   padding: 20px;
+  margin-top: 80px;
 `;
 
 export const EmptyCartText = styled.p`
@@ -49,6 +50,7 @@ export const CartContainer = styled.div`
   align-items: center;
   justify-content: center;
   background-color: #fff;
+  margin-top: 40px;
 `;
 
 export const CartList = styled.ul`
@@ -116,6 +118,7 @@ export const DivPrice = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  margin-left: 100px;
 `;
 
 export const ProductInfo = styled.div`
@@ -123,6 +126,7 @@ export const ProductInfo = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: 200px;
 `;
 
 export const AddRemoveButton = styled.button`
@@ -304,6 +308,7 @@ export const ContainerSucess = styled.div`
   flex-direction: column;
   align-items: center;
   background: #f5f5f5;
+  margin-top: 60px;
 
   .icon {
     font-size: 120px;

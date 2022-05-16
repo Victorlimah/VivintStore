@@ -17,7 +17,7 @@ export default function Header() {
         <S.Header>
             <S.Person onClick={() => navigate("/perfil")} />
             <S.Heart onClick={() => navigate("/favoritos")} />
-            <S.Historic onClick={() => navigate("historico")} />
+            <S.Historic onClick={() => navigate("/historico")} />
             <S.Logo src={Logo} onClick={() => navigate("/home")} />
             <S.BackArrow className="back-arrow" onClick={() => navigate(-1)} />
             <S.Cart onClick={() => navigate("/carrinho")} />
