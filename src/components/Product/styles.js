@@ -4,12 +4,16 @@ import { BsFillCartPlusFill } from "react-icons/bs";
 
 export const Main = styled.main`
     padding-top: 150px;
-    width: 100vw;
-    height: 100vh;
     background-color: #EFEFEF;
+    width: 100%;
+    height: 100vh;
     color: #000000;
     &.money{
         color: green;
+    }
+    @media (max-width: 768px) {
+        display: flex;
+        flex-direction: column;
     }
 `
 export const ProductTitle = styled.h1`
@@ -22,22 +26,24 @@ export const ProductPrice = styled.h1`
     color: green;
     margin-top: 50px;
     margin-left: 20px;
+    @media (max-width: 768px) {
+        margin-top: 20px;
+    }
 `
 export const ProductDescription = styled.h1`
     font-size: 30px;
     font-family: 'Koulen', cursive;
     @media (max-width: 768px) {
         font-size: 17px;
-        width: 400px;
     }
    
 `
 export const ProductInfo = styled.div`
-    position: relative;
     margin-top: 30px;
     width: 600px;
     @media (max-width: 768px) {
-       margin-left: 150px;
+       width: 90%;
+       margin-left: 30px;
     }
 `
 export const Product = styled.div`
@@ -77,10 +83,10 @@ export const styledButton = styled.button`
     font-size: 20px;
     gap: 15px;
     margin-top: 40px;
-    margin-left: 120px;
+    margin-left: 30px;
     @media (max-width: 768px) {
         width: 370px;
-        margin-left: 160px;
+        
     }
     &:hover{
         background-color: #5DA405;
@@ -90,6 +96,9 @@ export const styledButton = styled.button`
 `
 export const Rigth = styled.div`
     margin-left: 50px;
+    @media (max-width: 768px) {
+        margin-left: 0px;
+    }
 `
 export const Hr = styled.div`
     width: 100%;
