@@ -17,7 +17,7 @@ export default function Header() {
 
   return (
     <S.Header>
-      <S.Person onClick={() => navigate("/perfil")} />
+      <S.Person onClick={() => logout()} />
       <S.Heart onClick={() => navigate("/favoritos")} />
       <S.Historic onClick={() => navigate("/historico")} />
       <S.Logo src={Logo} onClick={() => navigate("/home")} />
@@ -29,5 +29,12 @@ export default function Header() {
   function backArrow(route) {
     if (route.includes("/?id=")) navigate(-1);
     else navigate("/home");
+  }
+
+  function logout() {
+    if (window.confirm("Deseja realmente sair?")) {
+      localStorage.removeItem("token");
+      navigate("/");
+    }
   }
 }

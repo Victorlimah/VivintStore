@@ -19,9 +19,9 @@ export const ProductContainer = styled.div`
 `;
 
 export const ProductTitle = styled.p`
-  font-size: 30px;
+  font-size: 27px;
   text-align: center;
-  margin-top: 40px;
+  margin-top: 30px;
 `;
 
 export const ProductPrice = styled.p`

@@ -50,7 +50,7 @@ export default function Home() {
             className="click"
             onClick={() => navigate("/categoria/?type=highlight")}
           >
-            Ver mais {">"}{" "}
+            Ver mais {">"}
           </p>
         </S.Options>
         <S.NewProducts>
