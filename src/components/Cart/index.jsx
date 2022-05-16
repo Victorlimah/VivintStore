@@ -8,13 +8,14 @@ import { AiFillCheckCircle } from "react-icons/ai";
 import { BsTrashFill } from "react-icons/bs";
 
 export default function Cart() {
-  const { API_URL, user } = useContext(UserContext);
+  const { API_URL } = useContext(UserContext);
   const [sucess, setSucess] = useState(false);
   const [orderID, setOrderID] = useState("");
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
 
   const authorization = {
-    headers: { Authorization: `Bearer ${user.token}` },
+    headers: { Authorization: `Bearer ${token}` },
   };
 
   const [cart, setCart] = useState({

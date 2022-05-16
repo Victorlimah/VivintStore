@@ -14,13 +14,8 @@ export default function Router() {
   const [API_URL] = useState("https://api-vivint.herokuapp.com");
   //const [API_URL] = useState("http://localhost:5000");
 
-  const [user, setUser] = useState({
-    name: "",
-    token: "",
-  });
-
   return (
-    <UserContext.Provider value={{ user, setUser, API_URL }}>
+    <UserContext.Provider value={{ API_URL }}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<PageMain />} />

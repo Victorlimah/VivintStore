@@ -1,7 +1,7 @@
 import axios from "axios";
 import * as S from "./styles";
 import Loading from "./../Loading";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import UserContext from "./../../provider/UserContext";
 import Logo from "../../assets/vivint-sem-fundo.png";
@@ -12,6 +12,11 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState(false);
   const [statusError, setStatusError] = useState(null);
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) navigate("/home");
+  }, [navigate]);
+
   const [inputs, setInputs] = useState({
     name: "",
     email: "",

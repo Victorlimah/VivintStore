@@ -1,17 +1,22 @@
 import axios from "axios";
 import * as S from "./styles";
 import Loading from "./../Loading";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import UserContext from "./../../provider/UserContext";
 import Logo from "../../assets/vivint-sem-fundo.png";
 
 export default function Login() {
   const navigate = useNavigate();
-  const { setUser, API_URL } = useContext(UserContext);
+  const { API_URL } = useContext(UserContext);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState(false);
   const [statusError, setStatusError] = useState(null);
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) navigate("/home");
+  }, [navigate]);
+
   const [inputs, setInputs] = useState({
     email: "",
     password: "",
@@ -44,10 +49,7 @@ export default function Login() {
       }
       const response = await axios.post(`${API_URL}/sign-in`, inputs);
       localStorage.setItem("token", response.data.token);
-
       setLoading(false);
-
-      setUser(response.data);
       navigate("/home");
     } catch (err) {
       setLoading(false);

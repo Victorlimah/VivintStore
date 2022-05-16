@@ -1,9 +1,14 @@
 import * as S from "./styles";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import Logo from "../../assets/vivint-sem-fundo.png";
 
 export default function Main() {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) navigate("/home");
+  }, [navigate]);
 
   return (
     <S.Container>
@@ -17,9 +22,14 @@ export default function Main() {
           <br />É de graça, e sempre será.
         </S.Subtitle>
         <S.ButtonContainer>
-          <S.ButtonAcess onClick={() => navigate("/login")}>LOGIN</S.ButtonAcess>
+          <S.ButtonAcess onClick={() => navigate("/login")}>
+            LOGIN
+          </S.ButtonAcess>
 
-          <S.ButtonAcess className="register" onClick={() => navigate("/register")}>
+          <S.ButtonAcess
+            className="register"
+            onClick={() => navigate("/register")}
+          >
             REGISTRE-SE
           </S.ButtonAcess>
         </S.ButtonContainer>

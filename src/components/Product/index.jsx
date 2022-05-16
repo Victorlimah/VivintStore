@@ -7,16 +7,19 @@ export default function Product() {
   const id = new URLSearchParams(window.location.search).get("id");
   const [product, setProduct] = useState({});
   const { API_URL } = useContext(UserContext);
-  const { user } = useContext(UserContext);
+  const token = localStorage.getItem("token");
+
   const authorization = {
-    headers: { Authorization: `Bearer ${user.token}` },
+    headers: { Authorization: `Bearer ${token}` },
   };
+
   useEffect(() => {
     async function loadProduct() {
       const response = await axios.get(`${API_URL}/products/${id}`);
       setProduct(response.data);
     }
     loadProduct();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function transformBRL(value) {
@@ -38,7 +41,7 @@ export default function Product() {
             <S.Hr></S.Hr>
             <S.ProductPrice>
               <S.styledMoney />
-              {price}
+              {price ? transformBRL(price) : "R$ 0,00"}
             </S.ProductPrice>
           </S.ProductInfo>
           <S.styledButton>
