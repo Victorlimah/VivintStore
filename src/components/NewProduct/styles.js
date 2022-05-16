@@ -21,7 +21,6 @@ export const NewProductContainer = styled.div`
 export const NewProductTitle = styled.p`
     font-size: 30px;
     text-align: center;
-    font-weight: bold;
     margin-top: 40px;
 `
 
@@ -29,7 +28,7 @@ export const NewProductPrice = styled.p`
     color: green;
     position: absolute;
     bottom: 40px;
-    font-size: 30px;
+    font-size: 25px;
 `
 export const NewProductImage = styled.img`
     width: 300px;

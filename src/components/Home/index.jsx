@@ -12,12 +12,19 @@ export default function Home() {
   const [highlights, setHighlights] = useState([]);
 
   useEffect(() => {
+
     async function loadHighlights() {
-      const response = await axios.get(`${API_URL}/category/highlight`);
-      setHighlights(response.data);
+      try {
+        const response = await axios.get(`${API_URL}/category/highlight`);
+        setHighlights(response.data);
+
+      } catch {
+        alert("Erro ao carregar os produtos em destaque");
+      }
     }
     loadHighlights();
   }, []);
+
 
   return (
     <S.Main>
@@ -39,6 +46,7 @@ export default function Home() {
         </S.Category>
       </S.Categories>
       <S.Rigth>
+
         <S.Options>
           <p>Destaques</p>
           <p className="click" onClick={() => navigate("/categoria/?type=highlight")}>
@@ -58,6 +66,7 @@ export default function Home() {
             );
           })}
         </S.NewProducts>
+
       </S.Rigth>
     </S.Main>
 

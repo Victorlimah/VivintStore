@@ -11,38 +11,36 @@ export default function Product() {
   const authorization = {
     headers: { Authorization: `Bearer ${user.token}` },
   };
-  console.log(authorization);
-
   useEffect(() => {
     async function loadProduct() {
       const response = await axios.get(`${API_URL}/products/${id}`);
-
       setProduct(response.data);
     }
     loadProduct();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(product);
   const { price, image, title, description } = product;
   return (
     <S.Main>
       <S.Product>
         <S.ProductImage src={image} />
-        <S.ProductInfo>
-          <S.ProductTitle>{title}</S.ProductTitle>
-          <S.ProductDescription>{description}</S.ProductDescription>
-          <S.ProductPrice>
-            <S.styledMoney />
-            {price}
-          </S.ProductPrice>
-        </S.ProductInfo>
-        <S.styledButton>
-          <S.styledCart />
-          <p onClick={() => addCart(title)} className="text">
-            Adicionar ao carrinho
-          </p>
-        </S.styledButton>
+        <S.Rigth>
+          <S.ProductInfo>
+            <S.ProductTitle>{title}</S.ProductTitle>
+            <S.ProductDescription>{description}</S.ProductDescription>
+            <S.Hr></S.Hr>
+            <S.ProductPrice>
+              <S.styledMoney />
+              {price}
+            </S.ProductPrice>
+          </S.ProductInfo>
+          <S.styledButton>
+            <S.styledCart />
+            <p onClick={() => addCart(title)} className="text">
+              Adicionar ao carrinho
+            </p>
+          </S.styledButton>
+        </S.Rigth>
       </S.Product>
     </S.Main>
   );

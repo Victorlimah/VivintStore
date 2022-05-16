@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Loading from "../Loading";
 
 export const Main = styled.main`
     display: flex;
@@ -19,7 +20,7 @@ export const NewProducts = styled.div`
     margin-left: 550px;
     @media (max-width: 768px) {
         grid-template-columns: repeat(1, 1fr);
-        margin-left: 27px;
+        margin-left: 22px;
         margin-top: 30px;
     }
 `
@@ -72,4 +73,11 @@ export const Options = styled.div`
         margin-top: 420px;
         font-size: 30px;
     }
+`
+
+export const styledLoading = styled(Loading)`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 `

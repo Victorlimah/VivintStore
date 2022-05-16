@@ -10,7 +10,7 @@ export const Container = styled.div`
   justify-content: center;
   background-image: linear-gradient(45deg, #06113C, #FF8C32);
   background-size: 200% 200%;
-  animation: colors 15s ease infinite;
+  animation: colors 5s ease infinite;
 
   @keyframes colors {
     0%{
