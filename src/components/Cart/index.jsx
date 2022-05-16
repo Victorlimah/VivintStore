@@ -6,6 +6,7 @@ import { useState, useContext, useEffect } from "react";
 import UserContext from "./../../provider/UserContext";
 import { AiFillCheckCircle } from "react-icons/ai";
 import { BsTrashFill } from "react-icons/bs";
+import Loading from "./../Loading";
 
 export default function Cart() {
   const { API_URL } = useContext(UserContext);
@@ -13,6 +14,7 @@ export default function Cart() {
   const [orderID, setOrderID] = useState("");
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+  const [loading, setLoading] = useState(false);
 
   const authorization = {
     headers: { Authorization: `Bearer ${token}` },
@@ -156,7 +158,9 @@ export default function Cart() {
               onChange={handleInputChange}
               required
             />
-            <S.Button type="submit">Buscar</S.Button>
+            <S.Button type="submit">
+              {loading ? <Loading /> : "Buscar"}
+            </S.Button>
           </fieldset>
         </S.Form>
       </S.DeliveryInfo>
@@ -172,7 +176,7 @@ export default function Cart() {
           <S.FooterText>{transformBRL(cart.total)}</S.FooterText>
         </S.FooterContainer>
         <S.FooterButton onClick={() => buyOrder()}>
-          Finalizar Pedido
+          {loading ? <Loading /> : "Finalizar Pedido"}
         </S.FooterButton>
       </S.Footer>
     );
@@ -199,6 +203,7 @@ export default function Cart() {
 
   async function searchCEP(event) {
     event.preventDefault();
+    setLoading(true);
     const { adress, zipCode } = event.target;
 
     try {
@@ -216,6 +221,8 @@ export default function Cart() {
       console.log(e);
       alert("CEP não encontrado");
       setForm({ ...form, cep: "" });
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -279,6 +286,7 @@ export default function Cart() {
     }
 
     if (window.confirm("Deseja realmente finalizar o pedido?")) {
+      setLoading(true);
       const order = {
         adress: adress.adress,
         zipCode: adress.cep,
@@ -300,6 +308,8 @@ export default function Cart() {
       } catch (e) {
         console.log(e);
         alert("Erro ao realizar pedido");
+      } finally {
+        setLoading(false);
       }
     }
   }

@@ -19,13 +19,14 @@ export default function Category() {
   }, []);
 
   let tittle = "";
-  if (type === "computer") {
-    tittle = "Computadores";
-  } else if (type === "notebook") {
-    tittle = "Notebooks";
-  } else {
-    tittle = type;
-  }
+
+  if (type === "computer") tittle = "Computadores";
+  else if (type === "notebook") tittle = "Notebooks";
+  else if (type === "highlight") tittle = "Destaques";
+  else if (type === "perifericos") tittle = "Perifericos";
+  else if (type === "hardware") tittle = "Hardware";
+  else if (type === "kits") tittle = "Kits de Upgrade";
+  else tittle = type;
 
   return (
     <S.Main>
