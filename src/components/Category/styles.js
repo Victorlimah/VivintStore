@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
 export const Main = styled.main`
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    padding-top: 70px;
     background-color: #EFEFEF;
+    display: grid;
+    grid-template-columns: 1fr;
 `
 
 export const Tittle = styled.h1`

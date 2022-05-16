@@ -9,7 +9,6 @@ export const Bottom = styled.div`
     height: 130px;
     padding: 20px;
     background-color: #F66B0E;
-    margin-top: 20px;
 `
 
 export const Logo = styled.img`
