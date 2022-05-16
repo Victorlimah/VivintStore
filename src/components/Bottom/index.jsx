@@ -1,17 +1,14 @@
 import * as S from "./styles";
-import { AiOutlineHome } from "react-icons/ai";
-import { BsPerson } from "react-icons/bs";
-import { AiOutlineHeart } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
+import Logo from "../../assets/vivint-sem-fundo.png";
 
 export default function Bottom() {
-  const navigate = useNavigate();
   return (
     <>
       <S.Bottom>
-        <BsPerson onClick={() => navigate("/perfil")} />
-        <AiOutlineHome onClick={() => navigate("/home")} />
-        <AiOutlineHeart onClick={() => navigate("/historico")} />
+        <S.Logo src={Logo} />
+        <S.Description>
+          VIVINT STORE® É UMA MARCA REGISTRADA DE VIVINT STORE LTDA | CNPJ: XX.XXX.XXX/XXXX-XX
+        </S.Description>
       </S.Bottom>
     </>
   );

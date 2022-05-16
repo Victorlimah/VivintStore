@@ -17,33 +17,10 @@ export default function Home() {
       setHighlights(response.data);
     }
     loadHighlights();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <S.Main>
-      <S.Options>
-        <p>Recem adicionados</p>
-        <p onClick={() => navigate("/categoria/?type=highlight")}>
-          Ver mais {">"}{" "}
-        </p>
-      </S.Options>
-      <S.NewProducts>
-        {highlights.map((product, index) => {
-          return (
-            <NewProduct
-              key={index}
-              tittle={product.title}
-              price={product.price}
-              image={product.image}
-              id={product.id}
-            ></NewProduct>
-          );
-        })}
-      </S.NewProducts>
-      <S.Options>
-        <p>Categorias</p>
-      </S.Options>
       <S.Categories>
         <S.Category onClick={() => navigate(`/categoria?type=computer`)}>
           <p>Computadores</p> <IoIosArrowForward />
@@ -61,6 +38,28 @@ export default function Home() {
           <p>Kits de Upgrade</p> <IoIosArrowForward />
         </S.Category>
       </S.Categories>
+      <S.Rigth>
+        <S.Options>
+          <p>Destaques</p>
+          <p className="click" onClick={() => navigate("/categoria/?type=highlight")}>
+            Ver mais {">"}{" "}
+          </p>
+        </S.Options>
+        <S.NewProducts>
+          {highlights.map((product, index) => {
+            return (
+              <NewProduct
+                key={index}
+                tittle={product.title}
+                price={product.price}
+                image={product.image}
+                id={product.id}
+              ></NewProduct>
+            );
+          })}
+        </S.NewProducts>
+      </S.Rigth>
     </S.Main>
+
   );
 }

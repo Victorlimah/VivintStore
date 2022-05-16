@@ -5,27 +5,35 @@ export const NewProductContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 200px;
-    width: 200px;
-    background-color: #EFEFEF;
+    height: 500px;
+    width: 362px;
+    background-color: #FFFFFF;
     border-radius: 15px;
     padding : 10px 10px 0 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding-top: 50px;
+    cursor: pointer;
+    &:hover {
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    }
 `
 
 export const NewProductTitle = styled.p`
-    margin-top: 30px;
-
+    font-size: 30px;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 40px;
 `
 
 export const NewProductPrice = styled.p`
-    margin-left: -60px;
-    margin-top: 10px;
     color: green;
-    margin-top: 25px;
+    position: absolute;
+    bottom: 40px;
+    font-size: 30px;
 `
 export const NewProductImage = styled.img`
-    width: 150px;
-    height: 80px;
+    width: 300px;
+    height: 200px;
     border-radius: 10px;
 `
 export const NewProductDescription = styled.p`

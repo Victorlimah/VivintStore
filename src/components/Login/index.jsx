@@ -4,6 +4,7 @@ import Loading from "./../Loading";
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import UserContext from "./../../provider/UserContext";
+import Logo from "../../assets/vivint-sem-fundo.png";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -62,6 +63,7 @@ export default function Login() {
   return (
     <>
       <S.Container>
+        <S.Logo src={Logo} />
         <S.Title>Bem vindo(a) de volta!</S.Title>
         <S.Form onSubmit={handleSubmit}>
           <S.FormTitle>Insira seus dados para entrar</S.FormTitle>

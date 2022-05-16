@@ -2,13 +2,31 @@ import styled from "styled-components";
 
 export const Bottom = styled.div`
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    position: fixed;
-    bottom: 0;
-    height: 50px;
     width: 100vw;
+    height: 130px;
     padding: 20px;
-    background-color: #D7D6D4;
-    font-size: 1.8em;
+    background-color: #F66B0E;
+`
+
+export const Logo = styled.img`
+  width: 90px;
+  height: auto;
+  margin-top: 10px;
+  @media (max-width: 768px) {
+    width: 70px;
+  }
+`;
+
+export const Description = styled.p`
+    color: #FFFFFF;
+    font-size: 20px;
+    font-family: "Roboto", "sans-serif";
+    text-align: center;
+    margin-bottom: 10px;
+    @media (max-width: 768px) {
+        font-size: 15px;
+    }
 `

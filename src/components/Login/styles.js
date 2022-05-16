@@ -113,4 +113,11 @@ export const Register = styled.h3`
     text-decoration: none;
   }
 `;
-
+export const Logo = styled.img`
+  width: 100%;
+  height: auto;
+  max-width: 300px;
+  max-height: 300px;
+  margin-bottom: 20px;
+  
+`;
