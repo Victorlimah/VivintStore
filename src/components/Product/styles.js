@@ -83,7 +83,8 @@ export const styledButton = styled.button`
     font-size: 20px;
     gap: 15px;
     margin-top: 40px;
-    margin-left: 30px;
+    margin-left: 20px;
+    margin-bottom: 50px;
     @media (max-width: 768px) {
         width: 370px;
         
