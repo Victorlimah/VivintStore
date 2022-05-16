@@ -1,10 +1,8 @@
 import styled from "styled-components";
 
 export const Main = styled.main`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 70px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     background-color: #EFEFEF;
 `
 
