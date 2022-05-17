@@ -6,11 +6,14 @@ import axios from "axios";
 
 export default function HistoryOrder() {
   const [orders, setOrders] = useState([]);
-  const { user, API_URL } = useContext(UserContext);
+  const { API_URL } = useContext(UserContext);
 
+  const token = localStorage.getItem("token");
+  
+  
   const authorization = {
     headers: {
-      Authorization: `Bearer ${user.token}`,
+      Authorization: `Bearer ${token}`,
     },
   };
 
