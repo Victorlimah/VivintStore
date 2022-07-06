@@ -1,5 +1,5 @@
 <h1 align="center">
- 🛍️ Zap Recalls
+ 🛒 VivintStore
 </h1>
 
 <p align="center">
